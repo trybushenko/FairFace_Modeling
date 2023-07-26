@@ -1,0 +1,8 @@
+README.md
+setup.py
+src/fairface_classification/__init__.py
+src/fairface_classification/data.py
+src/fairface_classification.egg-info/PKG-INFO
+src/fairface_classification.egg-info/SOURCES.txt
+src/fairface_classification.egg-info/dependency_links.txt
+src/fairface_classification.egg-info/top_level.txt

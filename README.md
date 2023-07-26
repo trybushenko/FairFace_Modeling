@@ -1,0 +1,1 @@
+**To launch a project run ```pip install -e .``` in the root of the project.**
