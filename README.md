@@ -7,5 +7,5 @@ Next steps to apply:
 I tracked model training and the next performance with Tensorboard logging necessary metrics and losses to the directory, which wasn't pushed here because of its big size.
 
 Here is the architecture of the last layer of the fine-tuned model, which was previously pre-trained on the ImageNet dataset (popular benchmark dataset). 
-![alt text]([http://url/to/img.png](https://github.com/trybushenko/FairFace_Modeling/blob/master/model_architecture.png)https://github.com/trybushenko/FairFace_Modeling/blob/master/model_architecture.png)
+![alt text](https://github.com/trybushenko/FairFace_Modeling/blob/master/model_architecture.png)
 **To launch a project run ```pip install -e .``` in the root of the project.**
