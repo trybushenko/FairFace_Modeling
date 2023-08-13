@@ -61,11 +61,13 @@ def check_train_mode_off(loader, loader_type):
 class FairFaceDataset(Dataset):
     """Fair Face dataset."""
 
-    def __init__(self, csv_file, root_dir, encoders:dict, train:bool, transform=None) -> None:
+    def __init__(self, csv_file, root_dir, encoders:dict, mode:str, transform=None) -> None:
         """Arguments:
                 csv_file (string): Path to the csv file with annotations and filenames.
                 root_dir (string): Root directory of the project.
                 images_dir (string): Directory that contains train and val dirs.
+                encoders
+                mode - can "train", "test", "val"
                 transform (callable, optional): Optional transform to be applied 
                     on a sample.
         """
@@ -83,13 +85,15 @@ class FairFaceDataset(Dataset):
 
         self.transform = transform
 
-        train_test_data = read_json('../train_test_split.json')
-        train_data, test_data = train_test_data['train'], train_test_data['test']
+        train_test_data = read_json('../train_test_val.json')
+        train_data, test_data, val_data = train_test_data['train'], train_test_data['test'], train_test_data['val']
 
-        if train:
+        if mode == 'train':
             self.images_frame = self.images_frame[self.images_frame['file'].isin(train_data)]
-        else:
+        elif mode == 'test':
             self.images_frame = self.images_frame[self.images_frame['file'].isin(test_data)]
+        else:
+            self.images_frame = self.images_frame[self.images_frame['file'].isin(val_data)]
 
     def _get_labels(self, index):
         age = self.images_frame.iloc[index]['age']
