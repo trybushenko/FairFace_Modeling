@@ -5,9 +5,12 @@ import warnings
 import numpy as np
 import pandas as pd
 
+import kornia as K
+
+from PIL import Image
 from sklearn.model_selection import train_test_split
+from torchvision import transforms
 from torch.utils.data import Dataset
-from skimage import io
 
 warnings.filterwarnings('ignore')
 
@@ -115,14 +118,15 @@ class FairFaceDataset(Dataset):
             index = index.tolist()
         
         image_name = os.path.join(self.root_dir, self.images_dir, self.images_frame.iloc[index, 0])
-        image = io.imread(image_name)
+
+        image = Image.open(image_name)
 
         labels = self._get_labels(index=index)
 
-        sample = {'image' : image, **labels}
-
         if self.transform:
-            sample = self.transform(sample)
+            image = self.transform(image)
+
+        sample = {'image' : image, **labels}
 
         return sample
     
@@ -131,57 +135,3 @@ class FairFaceDataset(Dataset):
 
     def view(self):
         self.train_mode = False
-    
-
-class CustomNormalizer(torch.nn.Module):
-    """Normalizes image"""
-
-    def __init__(self, mean, std) -> None:
-        super().__init__()
-        self.mean = torch.tensor(mean)
-        self.std = torch.tensor(std)
-
-    def forward(self, sample):
-        image = sample['image']
-
-        for channel in range(image.shape[0]):
-            image[channel] = image[channel] - self.mean[channel]
-            image[channel] = image[channel] / self.std[channel]
-
-        sample = {'image' : image, **{k:v for (k, v) in sample.items() if k != 'image'}}
-
-        return sample
-    
-class CustomRandomVerticalFlipper:
-
-    """Randomly vertically flip the image"""
-
-    def __init__(self, prob) -> None:
-        self.prob = prob
-
-    def __call__(self, sample):
-        image = sample['image']
-        
-        if np.random.random() <= self.prob:
-            image = torch.flip(image, dims=[2])
-
-        sample = {'image' : image, **{k:v for (k, v) in sample.items() if k != 'image'}}
-
-        return sample
-    
-class ToTensor:
-
-    """Convert ndarrays in sample to Tensors."""
-
-    def __call__(self, sample):
-        image = sample['image']
-
-        # swap color axis because
-        # numpy image: H x W x C
-        # torch image: C x H x W
-        image = image.transpose((2, 0, 1))
-
-        sample = {'image' : torch.from_numpy(image), **{k:v for (k, v) in sample.items() if k != 'image'}}
-
-        return sample
-    
