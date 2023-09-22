@@ -1,3 +1,13 @@
 ./data/train
 ./data/val
 ./venv
+./.venv
+./data/EDA_images
+./dist
+./train_test_split.json
+./train_test.val.json
+./poetry.lock
+./notebooks/best
+./notebooks/better_bceloss
+./notebooks/models
+./notebooks/model.pt
