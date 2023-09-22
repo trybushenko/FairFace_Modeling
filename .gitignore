@@ -1,5 +1,5 @@
-./data/train
-./data/val
+./data/train/*
+./data/val/*
 ./venv
 ./.venv
 ./data/EDA_images
