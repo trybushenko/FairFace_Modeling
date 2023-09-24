@@ -4,6 +4,8 @@ Next steps to apply:
 2) albumentation;
 3) Pytorch-lightning
 
+The [link](https://drive.google.com/drive/folders/1Jd29ghHM067QjbIJnM0Ud0b8OPIKr76f?usp=drive_link) to the best model I could train on this dataset.
+
 I tracked model training and the next performance with Tensorboard logging necessary metrics and losses to the directory, which wasn't pushed here because of its big size.
 
 Here is the architecture of the last layer of the fine-tuned model, which was previously pre-trained on the ImageNet dataset (popular benchmark dataset). 
