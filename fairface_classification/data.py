@@ -6,8 +6,6 @@ import numpy as np
 import pandas as pd
 
 from PIL import Image
-from sklearn.model_selection import train_test_split
-from torchvision import transforms
 from torch.utils.data import Dataset
 
 warnings.filterwarnings('ignore')
@@ -188,3 +186,24 @@ class FairFaceDataset(Dataset):
             None.
         """
         self.train_mode = False
+
+def get_dummy(enc_dict, label, device):
+    """
+    Converts a label to a one-hot encoded vector.
+
+    Args:
+        enc_dict: A dictionary mapping labels to their corresponding indices.
+        label: The label to be converted.
+        device: The device to be used.
+
+    Returns:
+        A one-hot encoded vector representing the label.
+    """
+    label_classes = len(enc_dict.values())
+    label_array = torch.zeros((label.shape[0], label_classes))
+
+    for (i, label_class) in enumerate(label):
+        label_array[i][label_class] = 1
+
+    label_array = label_array.to(device)
+    return label_array
