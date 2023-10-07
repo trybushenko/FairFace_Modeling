@@ -184,25 +184,25 @@ def log_tensorboard(board, losses, labels, preds, mappings, epoch, mode='Train')
     print(f'Age loss = {age_loss}\tRace loss = {race_loss}\tGender Loss = {gender_loss}')
     
     board.add_scalar(f'{mode} Loss', loss, epoch)
-    board.add_scalar('Age {mode} Loss', age_loss, epoch)
-    board.add_scalar('Race {mode} Loss', race_loss, epoch)
-    board.add_scalar('Gender {mode} Loss', gender_loss, epoch)
+    board.add_scalar(f'Age {mode} Loss', age_loss, epoch)
+    board.add_scalar(f'Race {mode} Loss', race_loss, epoch)
+    board.add_scalar(f'Gender {mode} Loss', gender_loss, epoch)
 
-    board.add_scalar('Age {mode} accuracy', accuracy_score(age_labels, age_preds), epoch)
-    board.add_scalar('Race {mode} accuracy', accuracy_score(race_labels, race_preds), epoch)
-    board.add_scalar('Gender {mode} accuracy', accuracy_score(gender_labels, gender_preds), epoch)
+    board.add_scalar(f'Age {mode} accuracy', accuracy_score(age_labels, age_preds), epoch)
+    board.add_scalar(f'Race {mode} accuracy', accuracy_score(race_labels, race_preds), epoch)
+    board.add_scalar(f'Gender {mode} accuracy', accuracy_score(gender_labels, gender_preds), epoch)
 
-    board.add_scalar('Age {mode} f1', f1_score(age_labels, age_preds, average='macro'), epoch)
-    board.add_scalar('Race {mode} f1', f1_score(race_labels, race_preds, average='macro'), epoch)
-    board.add_scalar('Gender {mode} f1', f1_score(gender_labels, gender_preds, average='macro'), epoch)
+    board.add_scalar(f'Age {mode} f1', f1_score(age_labels, age_preds, average='macro'), epoch)
+    board.add_scalar(f'Race {mode} f1', f1_score(race_labels, race_preds, average='macro'), epoch)
+    board.add_scalar(f'Gender {mode} f1', f1_score(gender_labels, gender_preds, average='macro'), epoch)
 
-    board.add_scalar('Age {mode} precision', precision_score(age_labels, age_preds, average='macro'), epoch)
-    board.add_scalar('Race {mode} precision', precision_score(race_labels, race_preds, average='macro'), epoch)
-    board.add_scalar('Gender {mode} precision', precision_score(gender_labels, gender_preds, average='macro'), epoch)
+    board.add_scalar(f'Age {mode} precision', precision_score(age_labels, age_preds, average='macro'), epoch)
+    board.add_scalar(f'Race {mode} precision', precision_score(race_labels, race_preds, average='macro'), epoch)
+    board.add_scalar(f'Gender {mode} precision', precision_score(gender_labels, gender_preds, average='macro'), epoch)
 
-    board.add_scalar('Age {mode} recall', recall_score(age_labels, age_preds, average='macro'), epoch)
-    board.add_scalar('Race {mode} recall', recall_score(race_labels, race_preds, average='macro'), epoch)
-    board.add_scalar('Gender {mode} recall', recall_score(gender_labels, gender_preds, average='macro'), epoch)
+    board.add_scalar(f'Age {mode} recall', recall_score(age_labels, age_preds, average='macro'), epoch)
+    board.add_scalar(f'Race {mode} recall', recall_score(race_labels, race_preds, average='macro'), epoch)
+    board.add_scalar(f'Gender {mode} recall', recall_score(gender_labels, gender_preds, average='macro'), epoch)
 
     # Create confusion matrix each epoch and label it the same way for more ease comparing during epochs
     board.add_figure(f'{mode.lower()}_fairface_cm', create_cfs(ages={'true' : age_labels, 'pred' : age_preds}, 
