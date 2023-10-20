@@ -163,9 +163,9 @@ def calc_measures(model, loader, device):
 def log_tensorboard(board, losses, labels, preds, mappings, epoch, mode='Train'):
 
     loss = losses['loss']
-    age_loss = losses['age_loss']
-    race_loss = losses['race_loss']
-    gender_loss = losses['gender_loss']
+    age_loss = losses['age']
+    race_loss = losses['race']
+    gender_loss = losses['gender']
 
     age_labels = labels['age']
     race_labels = labels['race']
