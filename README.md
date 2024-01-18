@@ -16,7 +16,7 @@ This project aims to classify faces into different categories such as age, gende
 To install the required packages, run the following command:
 
 ```bash
-pip install -r requirements.txt
+sh runthis.sh
 ```
 
 ## Usage
