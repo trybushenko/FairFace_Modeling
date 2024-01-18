@@ -253,3 +253,5 @@ def train_model(model, criterion, optimizer, scheduler_lr, device, loaders, tens
 
     # return trained model
     return model
+
+
