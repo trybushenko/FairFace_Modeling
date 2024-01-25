@@ -4,6 +4,7 @@ import torch
 import warnings
 import numpy as np
 import pandas as pd
+import torch.nn as nn
 
 from PIL import Image
 from torch.utils.data import Dataset
@@ -207,3 +208,17 @@ def get_dummy(enc_dict, label, device):
 
     label_array = label_array.to(device)
     return label_array
+
+class Unnormalize(nn.Module):
+    def __init__(self, mean, std):
+        super(Unnormalize, self).__init__()
+        self.mean = torch.tensor(mean)
+        self.std = torch.tensor(std)
+
+    def forward(self, x):
+        return self.unnormalize(x)
+
+    def unnormalize(self, x):
+        print(x.shape)
+        # Assuming x is a PyTorch tensor
+        return x * self.std[None, :, None, None] + self.mean[None, :, None, None]

@@ -7,7 +7,6 @@ from tqdm import tqdm
 from pathlib import Path
 
 def train_model(model, criterion, optimizer, scheduler_lr, device, loaders, tensor_writer, mappings, class_dicts, class_weights, n_epochs=25):
-
     """Fine-tune the model and returns it
     Args:
         model: The model to be trained.
