@@ -5,3 +5,4 @@ poetry run pip install --pre torch torchvision torchaudio -f https://download.py
 cd data/
 poetry run gdown --id 1n1wjPXLRlMrJjFdX1SxoiaO1JgwbQuFV
 mv fairface-img-margin025-trainval.zip fairface_dataset.zip
+poetry run pip install -e .
