@@ -1,4 +1,5 @@
-# FairFace Classification
+The repository has been moved to https://github.com/trybushenko/Fairface-Face-Classification
+# FairFace Classification 
 
 This project aims to classify faces into different categories such as age, gender, and race, using the FairFace dataset. The model used is a MobileNet V3 Large pretrained on ImageNet dataset, and the last layer is modified and adapted to the current FairFace dataset.
 
